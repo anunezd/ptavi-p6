@@ -30,7 +30,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as my_socket:
     print("Enviando: " + LINE)
     my_socket.send(bytes(LINE, 'utf-8') + b'\r\n')
     data = my_socket.recv(1024)
+    i_data = data.decode('utf-8').split()
 
+    if i_data[1] == '100':
+        if i_data[4] == '180':
+            if i_data[7] == '200':
+                print('Send ACK')
+                my_socket.send(bytes('ACK' + ' sip:' + RECEIVER
+                + '@' + IP + ' SIP/2.0\r\n', 'utf-8') + b'\r\n')
     print('Recibido -- ', data.decode('utf-8'))
     print("Terminando socket...")
 
