@@ -35,10 +35,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as my_socket:
     if i_data[1] == '100':
         if i_data[4] == '180':
             if i_data[7] == '200':
-                print('Send ACK')
-                my_socket.send(bytes('ACK' + ' sip:' + RECEIVER
-                + '@' + IP + ' SIP/2.0\r\n', 'utf-8') + b'\r\n')
-    print('Recibido -- ', data.decode('utf-8'))
+                my_socket.send(bytes('ACK' + ' sip:' + RECEIVER + '@' + IP
+                       + ' SIP/2.0\r\n', 'utf-8') + b'\r\n')
+    print('Recibido -- \n' + data.decode('utf-8'))
     print("Terminando socket...")
 
 print("Fin.")
